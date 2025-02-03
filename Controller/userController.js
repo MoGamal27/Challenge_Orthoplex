@@ -3,6 +3,88 @@ const pool = require('../Config/dbConfig');
 const appError = require('../utils/appError');
 
 
+exports.getAllUsers = asyncWrapper(async (req, res, next) => {
+    const { name, email, verified, startDate, endDate } = req.query
+    
+    // Pagination parameters
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const offset = (page - 1) * limit
+    
+    let query = `
+        SELECT 
+            id, name, email, verified, role, numberoflogin, created_at 
+        FROM users 
+        WHERE 1=1`
+    
+    const values = []
+    let paramCount = 1
+
+    // Add filters
+    if (name) {
+        query += ` AND name ILIKE $${paramCount}`
+        values.push(`%${name}%`)
+        paramCount++
+    }
+
+    if (email) {
+        query += ` AND email ILIKE $${paramCount}`
+        values.push(`%${email}%`)
+        paramCount++
+    }
+
+    if (verified !== undefined) {
+        query += ` AND verified = $${paramCount}`
+        values.push(verified === 'true')
+        paramCount++
+    }
+
+    if (startDate) {
+        query += ` AND created_at >= $${paramCount}`
+        values.push(new Date(startDate))
+        paramCount++
+    }
+
+    if (endDate) {
+        query += ` AND created_at <= $${paramCount}`
+        values.push(new Date(endDate))
+        paramCount++
+    }
+
+    //pagination
+    query += ` ORDER BY created_at DESC LIMIT $${paramCount} OFFSET $${paramCount + 1}`
+    values.push(limit, offset)
+
+    // Count total users
+    const totalUsersQuery = `
+    SELECT COUNT(*) FROM users;
+  `;
+
+  // Count verified users
+    const verifiedUserQuery = `
+    SELECT COUNT(*) FROM users WHERE verified = true;
+  `;
+   
+    let [result, verifiedUsers, totalUsers] = await Promise.all([
+    pool.query(query, values),
+    pool.query(verifiedUserQuery),
+    pool.query(totalUsersQuery),
+])
+
+    verifiedUsers = parseInt(verifiedUsers.rows[0].count, 10);
+    totalUsers = parseInt(totalUsers.rows[0].count, 10);
+
+
+    res.status(200).json({
+    status: 'success',   
+    data: result.rows,
+    displayedUsers: result.rows.length,
+    registeredUsers: totalUsers,
+    verifiedUsers,
+
+   });
+})
+
 
 // Get user by ID
 exports.getUserById = asyncWrapper(async (req, res, next) => {
@@ -80,6 +162,5 @@ exports.getTopUsers = asyncWrapper(async (req, res, next) => {
         data: { users: topUsers.rows }
     })
 })
-
 
 
