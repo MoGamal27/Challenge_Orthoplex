@@ -28,3 +28,11 @@ app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
 })
 
+
+// Handle Unhandled Promise Rejections Globally
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection at:", promise, "reason:", reason);
+  server.close(() => {
+    process.exit(1);
+  });
+});
