@@ -1,0 +1,913 @@
+{
+	"info": {
+		"_postman_id": "a4f906e1-08b5-4e7d-a99d-819579c3357a",
+		"name": "Orthoplex_Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37843029"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignUp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWT\", pm.response.json().data.token );"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mo\",\r\n    \"email\": \"kokovovo032@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/auth/signup",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "signup_eample",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"mo\",\r\n    \"email\": \"galil@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "455"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c7-wqJOOg+1DOQTcjhRbiL+dpiHXN0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 14:50:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"id\": 11,\n            \"name\": \"mo\",\n            \"email\": \"galil@gmail.com\",\n            \"password\": \"$2b$12$lP3B.pZr2LV0bU0.BuhRAuHMIOiXCiAuKdvsXaDZU.oIFWKlBJOTS\",\n            \"numberoflogin\": 0,\n            \"role\": \"user\",\n            \"verified\": false,\n            \"created_at\": \"2025-02-03T14:50:26.490Z\",\n            \"updated_at\": \"2025-02-03T14:50:26.490Z\"\n        },\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM4NTk0MjI4LCJleHAiOjE3Mzg2ODA2Mjh9.g8IPhgEfEvx_p9fiIxDyMVeyRd1i9Pg_OlwewPg0S1Q\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWT\", pm.response.json().token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"email\": \"kokovovo032@gmail.com\",\r\n      \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exampleErrorVerify",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"email\": \"kokovovo032@gmail.com\",\r\n      \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"36-2NfVmILaSwMSIXJISPnHf4I7xhE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 15:15:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"fail\",\n    \"message\": \"Please verify your email\"\n}"
+						},
+						{
+							"name": "example_success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n      \"email\": \"kokovovo032@gmail.com\",\r\n      \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-9K++XdDFOw1DK8Sov3cMt6pm9WU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 15:25:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6InVzZXIiLCJpYXQiOjE3Mzg1OTYzMTEsImV4cCI6MTczODg1NTUxMX0.2Vkbn1-CNhlmwfS16Hs0_lIa5V2oGpfbPRH6KTkMmfQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "verifyOtp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"kokovovo032@gmail.com\",\r\n    \"otp\":971883\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/auth/verifyOTP",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"auth",
+								"verifyOTP"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example_response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"kokovovo032@gmail.com\",\r\n    \"otp\":971883\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/verifyOTP",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"verifyOTP"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "329"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"149-8yhPqxK0aSRrOM3MC4ESVNwU3RI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 15:21:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"OTP verified successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"mo\",\n            \"email\": \"kokovovo032@gmail.com\",\n            \"password\": \"$2b$12$pxl6WJoqyIId.TsBxsa0xenm.c7ZtGOjI8czJq3Lkkp1gDQJh93k2\",\n            \"numberoflogin\": 0,\n            \"role\": \"user\",\n            \"verified\": true,\n            \"created_at\": \"2025-02-03T15:20:51.445Z\",\n            \"updated_at\": \"2025-02-03T15:20:51.445Z\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get_User_ById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_Url}}/users/1",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example_response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "177"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b1-y3DMgLJTUiAsEgrfF9zcLj2Ebk4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 16:37:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"mo\",\n            \"email\": \"kokovovo032@gmail.com\",\n            \"verified\": true,\n            \"role\": \"user\",\n            \"numberoflogin\": 2,\n            \"created_at\": \"2025-02-03T15:20:51.445Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get_top_threeUser",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_Url}}/users/topUsers",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"users",
+								"topUsers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exampleTopUsers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users/topUsers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"topUsers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "391"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"187-v872mFD1o2/LBjxx9eCAM33Fa10\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 18:02:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": 1,\n                \"name\": \"mogamalKhalil\",\n                \"email\": \"kokovovo032@gmail.com\",\n                \"numberoflogin\": 2,\n                \"created_at\": \"2025-02-03T15:20:51.445Z\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"mogemy\",\n                \"email\": \"gemyhamo7@gmail.com\",\n                \"numberoflogin\": 0,\n                \"created_at\": \"2025-02-03T17:37:05.429Z\"\n            },\n            {\n                \"id\": 3,\n                \"name\": \"engmogemy\",\n                \"email\": \"engmogamil@gmail.com\",\n                \"numberoflogin\": 0,\n                \"created_at\": \"2025-02-03T17:37:30.940Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"mogamalKhalil\",\r\n    \"email\":\"kokovovo032@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_Url}}/users/1",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example updated data",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"mogamalKhalil\",\r\n    \"email\":\"kokovovo032@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "228"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e4-WA3sFwQ7rFGYDaXo9BMg0ITsQT0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 16:53:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"id\": 1,\n            \"name\": \"mogamalKhalil\",\n            \"email\": \"kokovovo032@gmail.com\",\n            \"verified\": true,\n            \"role\": \"user\",\n            \"numberoflogin\": 2,\n            \"created_at\": \"2025-02-03T15:20:51.445Z\",\n            \"updated_at\": \"2025-02-03T16:53:21.857Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_Url}}/users/1",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_All_Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_Url}}/users?page=1&limit=10&name=mo&verified=false",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "name",
+									"value": "mo"
+								},
+								{
+									"key": "verified",
+									"value": "false",
+									"description": "true | false"
+								},
+								{
+									"key": "startDate",
+									"value": "03/02/2025",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "04/02/2025",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "example_allUsers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users?page=1&limit=10&name=mo&verified=false",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "mo"
+										},
+										{
+											"key": "verified",
+											"value": "false",
+											"description": "true | false"
+										},
+										{
+											"key": "startDate",
+											"value": "03/02/2025",
+											"disabled": true
+										},
+										{
+											"key": "endDate",
+											"value": "04/02/2025",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "359"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"167-+JiB3iGAjxPccB/NcVj/Fxty6Zw\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 17:43:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"engmogemy\",\n            \"email\": \"engmogamil@gmail.com\",\n            \"verified\": false,\n            \"role\": \"user\",\n            \"numberoflogin\": 0,\n            \"created_at\": \"2025-02-03T17:37:30.940Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"mogemy\",\n            \"email\": \"gemyhamo7@gmail.com\",\n            \"verified\": false,\n            \"role\": \"user\",\n            \"numberoflogin\": 0,\n            \"created_at\": \"2025-02-03T17:37:05.429Z\"\n        }\n    ],\n    \"displayedUsers\": 2,\n    \"registeredUsers\": 3,\n    \"verifiedUsers\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "gey_InactiveUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWT}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_Url}}/users/?period=hour",
+							"host": [
+								"{{Base_Url}}"
+							],
+							"path": [
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "hour",
+									"description": "hour | month"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "exampleInActiveUser",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/users/?period=hour",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "period",
+											"value": "hour",
+											"description": "hour | month\n"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "530"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"212-wH0CdpcmWCbW49tqk77JbdLm6sM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 03 Feb 2025 17:59:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": [\n        {\n            \"id\": 3,\n            \"name\": \"engmogemy\",\n            \"email\": \"engmogamil@gmail.com\",\n            \"verified\": false,\n            \"role\": \"user\",\n            \"numberoflogin\": 0,\n            \"created_at\": \"2025-02-03T17:37:30.940Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"mogemy\",\n            \"email\": \"gemyhamo7@gmail.com\",\n            \"verified\": false,\n            \"role\": \"user\",\n            \"numberoflogin\": 0,\n            \"created_at\": \"2025-02-03T17:37:05.429Z\"\n        },\n        {\n            \"id\": 1,\n            \"name\": \"mogamalKhalil\",\n            \"email\": \"kokovovo032@gmail.com\",\n            \"verified\": true,\n            \"role\": \"user\",\n            \"numberoflogin\": 2,\n            \"created_at\": \"2025-02-03T15:20:51.445Z\"\n        }\n    ],\n    \"displayedUsers\": 3,\n    \"registeredUsers\": 3,\n    \"verifiedUsers\": 1\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
