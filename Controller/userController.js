@@ -163,4 +163,28 @@ exports.getTopUsers = asyncWrapper(async (req, res, next) => {
     })
 })
 
+// Get Inactive Users
+exports.getInactiveUsers = asyncWrapper(async (req, res, next) => {
+    const { period } = req.query // 'hour' or 'month'
+
+    if(!period || (period !== 'hour' && period !== 'month')) {
+        return next(new appError('Invalid period', 400))
+    }
+    
+    const timeInterval = period === 'hour' ? 'INTERVAL \'1 hour\'' : 'INTERVAL \'1 month\''
+    
+    const query = `
+        SELECT id, name, email, numberoflogin, updated_at
+        FROM users
+        WHERE updated_at < NOW() - ${timeInterval}
+        ORDER BY updated_at DESC
+    `
+    const inactiveUsers = await pool.query(query)
+
+    res.status(200).json({
+        status: 'success',
+        results: inactiveUsers.rows.length,
+        data: { users: inactiveUsers.rows }
+    })
+})
 
