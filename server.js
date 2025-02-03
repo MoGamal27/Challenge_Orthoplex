@@ -3,6 +3,8 @@ const express = require('express')
 const appError = require('./utils/appError')
 const globalError = require('./middleware/errorMiddleware')
 const mainRoutes = require('./Routes/index')
+const cors = require('cors')
+const limiter = require('./middleware/rateLimit');
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -10,7 +12,9 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
-app.use('/api', mainRoutes)
+app.use(cors())
+
+app.use('/api', limiter, mainRoutes)
 
 
 app.all("*", (req, res, next) => {
