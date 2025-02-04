@@ -30,7 +30,12 @@ link: https://documenter.getpostman.com/view/37843029/2sAYX5KN1r
 - GET /api/users/top - Get top 3 users by login frequency
 - GET /api/users/inactive - Get inactive users
 
-
+## Testing
+- Unit tests are located in the test folder.
+- To run tests, use the following command:
+```bash
+npm test
+```
 ## Project Structure
 - routes/: Contains all the endpoints definitions for the project.
 - controller/: Contains the business logic and interactions with the database.
