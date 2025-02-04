@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "db:start": "node database/model/UserModel.js && node database/model/verifyOtpModel.js"
+    "db:start": "node database/model/UserModel.js && node database/model/verifyOtpModel.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +23,9 @@
     "nodemailer": "^6.10.0",
     "nodemon": "^3.1.9",
     "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
